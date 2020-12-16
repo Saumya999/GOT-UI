@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
-import './autosuggest.css';
+//import './autosuggest.css';
 import {BASE_URL} from '../../../src/config/Enviroment';
 import { LIST_ENDPOINT } from '../../../src/config/Endpoints';
+import SmallOutlinedChips from './chipSuggestions';
 class AutosuggestionSearch extends Component {
     constructor() {
         super();
@@ -13,7 +14,6 @@ class AutosuggestionSearch extends Component {
             results:[]
         };
     }
-
     
     
     componentDidMount() {
@@ -38,19 +38,17 @@ class AutosuggestionSearch extends Component {
     getSuggestionValue = suggestion => suggestion;
 
     renderSuggestion = suggestion => (
-        <div>
-            {suggestion}
-        </div>
+        <SmallOutlinedChips suggestion={suggestion}
+            handleClick={this.onchange}/>
     );
 
-    // OnChange event handler
+    
     onChange = (event, { newValue }) => {
         this.setState({
             value: newValue
         });
     };
 
-    // Suggestion rerender when user types
     onSuggestionsFetchRequested = ({ value }) => {
         this.setState({
             suggestions: this.getSuggestions(value)
@@ -67,14 +65,12 @@ class AutosuggestionSearch extends Component {
     render() {
         const { value, suggestions } = this.state;
 
-        // Option props
         const inputProps = {
             placeholder: 'Enter Battel Field Location',
             value,
             onChange: this.onChange
         };
 
-        // Adding AutoSuggest component
         return (
             <Autosuggest
                 suggestions={suggestions}

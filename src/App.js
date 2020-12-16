@@ -1,11 +1,14 @@
 import './App.css';
-import AutosuggestionSearch from'./components/search/Autosuggestion';
+import PrimarySearchAppBar from './components/appbar/Header';
+import DataMainView from './components/dataView/Data.mainView';
+import 'semantic-ui-css/semantic.min.css'
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Search for Battel Location</h1>
-      <AutosuggestionSearch/>
+      <PrimarySearchAppBar />
+      <DataMainView/>
     </div>
   );
 }
