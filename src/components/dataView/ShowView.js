@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-
-import { Card, Image } from 'semantic-ui-react'
-import { Row } from 'react-bootstrap';
+import React from "react";
+import { Card, Image, Divider } from 'semantic-ui-react'
+import { Row, Col } from 'react-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import attackerImage from './asset/attacker.jpg';
 import defenderImage from './asset/defender.jpg';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        height: '0.05px',
+    }
+}));
+
 export default function ShowMainView({ name, defender_king, attacker_king, location, attacker_size, defender_size }) {
+    const classes = useStyles();
     return (
         <Card>
                 <Card.Content>
@@ -28,16 +28,26 @@ export default function ShowMainView({ name, defender_king, attacker_king, locat
                 />
                 
                 <Card.Header>{name}</Card.Header>
-                    <Row>
-                        <Card.Meta textAlign='left'>{attacker_king}</Card.Meta>
-                        <Card.Meta textAlign='center'>Vs</Card.Meta>
-                        <Card.Meta textAlign='right'>{defender_king}</Card.Meta>
-                    </Row>
-                <Card.Description textAlign='left'>
-                    Location : <strong>{location}</strong>
-                </Card.Description>
+                <Divider fitted/>
                 <Row>
-                    {attacker_size && <Card.Description textAlign='left'>
+                    <Col>
+                        <Card.Meta textAlign='left'>{attacker_king}</Card.Meta>
+                    </Col>
+                    <Col>
+                        <Card.Meta textAlign='center'>Vs</Card.Meta>
+                    </Col>
+                    <Col>
+                        <Card.Meta textAlign='right'>{defender_king}</Card.Meta>
+                    </Col>
+                        
+                        
+                        
+                    </Row>
+                {location && <Card.Description textAlign='center'>
+                    Location : <strong>{location}</strong>
+                </Card.Description>}
+                <Row>
+                    {attacker_size && <Card.Description className={ classes.root}textAlign='left'>
                         Attacker Size : <strong>{attacker_size}</strong>
                     </Card.Description>}
                     {defender_size && <Card.Description textAlign='right'>
