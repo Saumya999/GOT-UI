@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShowMainView({ name, defender_king, attacker_king, location, attacker_size, defender_size }) {
     const classes = useStyles();
+    const UNKNOWN = 'Unknown';
     return (
         <Card>
                 <Card.Content>
@@ -31,13 +32,13 @@ export default function ShowMainView({ name, defender_king, attacker_king, locat
                 <Divider fitted/>
                 <Row>
                     <Col>
-                        <Card.Meta textAlign='left'>{attacker_king}</Card.Meta>
+                        <Card.Meta textAlign='left'>{attacker_king || UNKNOWN}</Card.Meta>
                     </Col>
                     <Col>
                         <Card.Meta textAlign='center'>Vs</Card.Meta>
                     </Col>
                     <Col>
-                        <Card.Meta textAlign='right'>{defender_king}</Card.Meta>
+                        <Card.Meta textAlign='right'>{defender_king || UNKNOWN}</Card.Meta>
                     </Col>
                         
                         
